@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MingJun | Personal | Page & Space</title>
+
+  <!-- Better fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <main class="stage" aria-label="Landing page">
+    <section class="card" role="region" aria-label="Profile clock card">
+      <header class="card__header">
+        <h1 class="card__name" id="displayName">MingJun Chen</h1>
+        <p class="card__tagline">MINGJUN | PERSONAL | PAGE &amp; SPACE</p>
+      </header>
+
+      <div class="card__time" aria-live="polite">
+        <div class="time" id="time">--:--:--</div>
+        <div class="date" id="date">—</div>
+      </div>
+
+      <!-- Centered Online -->
+      <div class="card__footer">
+        <div class="status" aria-label="Online status">
+          <span class="status__dot" aria-hidden="true"></span>
+          <span class="status__text" id="statusText">Online</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const pad = (n) => String(n).padStart(2, "0");
+    const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+    function tick() {
+      const now = new Date();
+      const h = pad(now.getHours());
+      const m = pad(now.getMinutes());
+      const s = pad(now.getSeconds());
+      document.getElementById("time").textContent = `${h}:${m}:${s}`;
+
+      const wd = weekdays[now.getDay()];
+      const mo = months[now.getMonth()];
+      const d  = now.getDate();
+      const y  = now.getFullYear();
+      document.getElementById("date").textContent = `${wd}, ${mo} ${d}, ${y}`;
+    }
+
+    tick();
+    setInterval(tick, 250);
+  </script>
+</body>
+</html>
